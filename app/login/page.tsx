@@ -1,7 +1,5 @@
 "use client"
-
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -11,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/contexts/auth-context"
-
 export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -21,22 +18,17 @@ export default function LoginPage() {
   const [error, setError] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
-
     try {
       const { success, error: signInError } = await signIn(username, password)
-
       if (!success) {
         throw new Error(signInError || "Invalid login credentials")
       }
-
       // Set cookie for middleware
       document.cookie = "isLoggedIn=true; path=/; max-age=86400"
-
       // Redirect to dashboard on success
       router.push(redirect)
     } catch (err: any) {
@@ -45,7 +37,6 @@ export default function LoginPage() {
       setIsLoading(false)
     }
   }
-
   return (
     <div className="flex min-h-screen flex-col">
       <header className="border-b">
@@ -66,7 +57,6 @@ export default function LoginPage() {
             <h1 className="text-3xl font-bold">Welcome to Mood Builder</h1>
             <p className="text-gray-500">Login with the demo credentials to access the journal</p>
           </div>
-
           {error && (
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
@@ -74,7 +64,6 @@ export default function LoginPage() {
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
@@ -100,7 +89,7 @@ export default function LoginPage() {
             <div className="pt-2">
               <Alert className="bg-blue-50 text-blue-800">
                 <AlertDescription>
-                  Use username: <strong>buildaihackathon</strong> and password: <strong>buildaihackathon</strong>
+                  For Judge Only: Use username: <strong>buildaihackathon</strong> and password: <strong>buildaihackathon</strong>
                 </AlertDescription>
               </Alert>
             </div>
