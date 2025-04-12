@@ -9,6 +9,7 @@ export function MoodChart() {
   const [mounted, setMounted] = useState(false)
   const [chartData, setChartData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [hasData, setHasData] = useState(false)
   const supabase = createClientComponentClient()
 
   useEffect(() => {
@@ -20,15 +21,19 @@ export function MoodChart() {
         const sevenDaysAgo = subDays(new Date(), 7)
 
         const { data } = await supabase
-          .from("journal_entries")
+          .from("journal_entries_v2") // Use v2 table
           .select("created_at, mood_score, analysis_data")
           .gte("created_at", sevenDaysAgo.toISOString())
           .order("created_at", { ascending: true })
 
         if (data && data.length > 0) {
-          // Process data for chart
-          const processedData = data.map((entry) => {
-            // Get mood score from entry or analysis_data
+          // Group entries by day and calculate average mood score
+          const entriesByDay = {}
+
+          // Process each entry
+          data.forEach((entry) => {
+            const entryDate = new Date(entry.created_at)
+            const dateKey = format(entryDate, "yyyy-MM-dd")
             const moodScore = entry.analysis_data?.analysis?.mood_score || entry.mood_score || 50
 
             // Get emotions from analysis_data
@@ -37,39 +42,56 @@ export function MoodChart() {
               keywords = entry.analysis_data.analysis.emotions
             }
 
-            return {
-              day: format(new Date(entry.created_at), "EEE"),
-              date: format(new Date(entry.created_at), "MMM d"),
-              mood: moodScore,
-              keywords: keywords,
+            // Initialize or update the day's data
+            if (!entriesByDay[dateKey]) {
+              entriesByDay[dateKey] = {
+                date: entryDate,
+                totalScore: moodScore,
+                count: 1,
+                allKeywords: keywords,
+              }
+            } else {
+              entriesByDay[dateKey].totalScore += moodScore
+              entriesByDay[dateKey].count += 1
+              entriesByDay[dateKey].allKeywords = [...entriesByDay[dateKey].allKeywords, ...keywords]
             }
           })
 
+          // Create chart data with daily averages
+          const processedData = Object.values(entriesByDay).map((dayData) => {
+            // Calculate average mood score for the day
+            const avgMoodScore = Math.round(dayData.totalScore / dayData.count)
+
+            // Get unique keywords
+            const uniqueKeywords = Array.from(new Set(dayData.allKeywords))
+
+            return {
+              day: format(dayData.date, "EEE"),
+              date: format(dayData.date, "MMM d"),
+              mood: avgMoodScore,
+              keywords: uniqueKeywords.slice(0, 5), // Limit to top 5 keywords
+              entryCount: dayData.count,
+            }
+          })
+
+          // Sort by date
+          processedData.sort((a, b) => {
+            const dateA = new Date(a.date)
+            const dateB = new Date(b.date)
+            return dateA.getTime() - dateB.getTime()
+          })
+
           setChartData(processedData)
+          setHasData(true)
         } else {
-          // Use default data if no entries found
-          setChartData([
-            { day: "Mon", date: "Mon", mood: 65, keywords: ["busy", "productive"] },
-            { day: "Tue", date: "Tue", mood: 75, keywords: ["energetic", "focused"] },
-            { day: "Wed", date: "Wed", mood: 85, keywords: ["happy", "accomplished"] },
-            { day: "Thu", date: "Thu", mood: 70, keywords: ["tired", "satisfied"] },
-            { day: "Fri", date: "Fri", mood: 60, keywords: ["stressed", "anxious"] },
-            { day: "Sat", date: "Sat", mood: 90, keywords: ["relaxed", "joyful"] },
-            { day: "Sun", date: "Sun", mood: 80, keywords: ["content", "peaceful"] },
-          ])
+          // No data available
+          setChartData([])
+          setHasData(false)
         }
       } catch (error) {
         console.error("Error fetching mood data:", error)
-        // Use default data on error
-        setChartData([
-          { day: "Mon", date: "Mon", mood: 65, keywords: ["busy", "productive"] },
-          { day: "Tue", date: "Tue", mood: 75, keywords: ["energetic", "focused"] },
-          { day: "Wed", date: "Wed", mood: 85, keywords: ["happy", "accomplished"] },
-          { day: "Thu", date: "Thu", mood: 70, keywords: ["tired", "satisfied"] },
-          { day: "Fri", date: "Fri", mood: 60, keywords: ["stressed", "anxious"] },
-          { day: "Sat", date: "Sat", mood: 90, keywords: ["relaxed", "joyful"] },
-          { day: "Sun", date: "Sun", mood: 80, keywords: ["content", "peaceful"] },
-        ])
+        setChartData([])
+        setHasData(false)
       } finally {
         setLoading(false)
       }
@@ -80,6 +102,25 @@ export function MoodChart() {
 
   if (!mounted) {
     return <div className="h-[300px]" />
+  }
+
+  if (loading) {
+    return (
+      <div className="flex h-[300px] items-center justify-center">
+        <div className="text-sm text-zinc-500">Loading mood data...</div>
+      </div>
+    )
+  }
+
+  if (!hasData) {
+    return (
+      <div className="flex h-[300px] items-center justify-center">
+        <div className="text-center">
+          <p className="text-sm text-zinc-500">No mood data available for the past 7 days.</p>
+          <p className="mt-2 text-sm text-zinc-500">Start journaling to see your mood trends!</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -116,14 +157,22 @@ export function MoodChart() {
                       <span className="font-bold text-zinc-900">{payload[0].value}%</span>
                     </div>
                   </div>
+                  <div className="mt-1">
+                    <span className="text-[0.70rem] uppercase text-zinc-500">Entries</span>
+                    <span className="ml-1 text-xs font-medium text-zinc-900">{payload[0].payload.entryCount}</span>
+                  </div>
                   <div className="mt-2">
                     <span className="text-xs text-zinc-500">Keywords:</span>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {payload[0].payload.keywords.map((keyword: string, idx: number) => (
-                        <span key={idx} className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-800">
-                          {keyword}
-                        </span>
-                      ))}
+                      {payload[0].payload.keywords && payload[0].payload.keywords.length > 0 ? (
+                        payload[0].payload.keywords.map((keyword: string, idx: number) => (
+                          <span key={idx} className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-800">
+                            {keyword}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-xs text-zinc-500">No keywords available</span>
+                      )}
                     </div>
                   </div>
                 </div>
