@@ -20,7 +20,7 @@ Mental health is often overlooked, especially in fast-paced, tech-driven environ
 ---
 ## Built With
 
-- **Upstage AI API**: For robust document parsing (OCR) and the Solar Pro model powering empathetic mood analysis.
+- **Upstage AI API**: For robust document parsing (OCR) and the Solar Pro model powering empathetic mood analysis and LLM inference for AI agent.
 
 - **PinAI**: To seamlessly modify and fetch user persona data in AI agent that puts the humans at the center of conversation.
 
