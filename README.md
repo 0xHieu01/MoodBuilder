@@ -27,3 +27,15 @@ Mental health is often overlooked, especially in fast-paced, tech-driven environ
 
 - **Supabase**: For secure, real-time handling of journaling entries, mood data, and overall user information.
 
+---
+## 🚀 Deployments
+
+- **Platform Deployment**:  
+  The Mood Builder platform is hosted on [Vercel](https://moodbuilder.vercel.app/) to ensure fast, scalable, and reliable performance.  
+
+- **Model Context Protocol (MCP)**:  
+  The MCP, which powers the PinAI Agent's context-aware interactions, is deployed as a serverless function on Vercel. It can be accessed at [https://model-context-protocol-mcp-with-vercel-functions-nine-lovat.vercel.app/sse](https://model-context-protocol-mcp-with-vercel-functions-nine-lovat.vercel.app/sse).  
+
+- **PinAI Agent**:  
+  The MoodBuilder Agent, one of core feature of Mood Builder, is created and managed on the PinAI platform. You can view the agent at [https://agent.pinai.tech/agent/338](https://agent.pinai.tech/agent/338).  
+  In addition, Personal Profile is also modified to highlight the use case of this application. Assume users have some mental health problems.
