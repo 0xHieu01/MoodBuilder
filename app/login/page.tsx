@@ -89,7 +89,7 @@ export default function LoginPage() {
             <div className="pt-2">
               <Alert className="bg-blue-50 text-blue-800">
                 <AlertDescription>
-                  For Judge Only: Use username: <strong>buildaihackathon</strong> and password: <strong>buildaihackathon</strong>
+                  For Judge only, please use username: <strong>buildaihackathon</strong> and password: <strong>buildaihackathon</strong>
                 </AlertDescription>
               </Alert>
             </div>
