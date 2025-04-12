@@ -113,6 +113,6 @@ You are a highly empathetic and professional psychological counselor. Your goal 
 
 ---
 ## Limitation & Future development
-Due to the time limitation of the hackathon, I mainly focused on developing the main features to deliver the MVP in time. Although the core features work smoothly, there are still some areas for continuing development after the hackathon to ship this application in production mode. For example, enhancing the UI features and adding additional components or fully enhancing the authentication process for production mode and handling a large number of users.
+Due to the time limitation of the hackathon, I mainly focused on developing the main features to deliver the MVP in time. Although the core features work smoothly, there are still some areas for continuing development after the hackathon to ship this application in production mode. For example, enhancing the UI features, fixing minor issues, fully enhancing the authentication process for production mode and handling a large number of users.
 
 Thank you for exploring Mood Builder! I hope you find it helpful and enjoyable. 
