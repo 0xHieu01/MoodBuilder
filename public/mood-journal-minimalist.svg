@@ -1,0 +1,22 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="white"/>
+  
+  <!-- Journal outline -->
+  <rect x="200" y="100" width="400" height="400" rx="8" stroke="black" stroke-width="4" fill="white"/>
+  
+  <!-- Journal lines -->
+  <line x1="250" y1="180" x2="550" y2="180" stroke="black" stroke-width="2"/>
+  <line x1="250" y1="230" x2="550" y2="230" stroke="black" stroke-width="2"/>
+  <line x1="250" y1="280" x2="550" y2="280" stroke="black" stroke-width="2"/>
+  <line x1="250" y1="330" x2="550" y2="330" stroke="black" stroke-width="2"/>
+  <line x1="250" y1="380" x2="550" y2="380" stroke="black" stroke-width="2"/>
+  <line x1="250" y1="430" x2="550" y2="430" stroke="black" stroke-width="2"/>
+  
+  <!-- Mood indicators -->
+  <circle cx="300" cy="150" r="20" fill="black"/>
+  <path d="M280 150 A20 20 0 0 0 320 150" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- Minimalist chart -->
+  <polyline points="250,480 300,450 350,470 400,420 450,440 500,410 550,430" stroke="black" stroke-width="3" fill="none"/>
+</svg>
