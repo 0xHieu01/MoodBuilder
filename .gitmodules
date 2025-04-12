@@ -1,0 +1,3 @@
+[submodule "model-context-protocol-mcp"]
+	path = model-context-protocol-mcp
+	url = https://github.com/0xHieu01/model-context-protocol-mcp-with-vercel-functions
