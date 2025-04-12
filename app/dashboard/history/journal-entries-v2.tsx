@@ -6,11 +6,14 @@ import Link from "next/link"
 import { getBrowserClient } from "@/lib/supabase"
 import { Badge } from "@/components/ui/badge"
 import { Loader2 } from "lucide-react"
+import { ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function JournalEntries() {
   const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState([])
   const [error, setError] = useState(null)
+  const [visibleEntries, setVisibleEntries] = useState(5) // Initially show 5 entries
   const supabase = getBrowserClient()
 
   useEffect(() => {
@@ -51,6 +54,10 @@ export default function JournalEntries() {
     fetchEntries()
   }, [supabase])
 
+  const loadMoreEntries = () => {
+    setVisibleEntries((prev) => prev + 5)
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-6">
@@ -76,9 +83,13 @@ export default function JournalEntries() {
     )
   }
 
+  // Only show the first 'visibleEntries' number of entries
+  const displayedEntries = entries.slice(0, visibleEntries)
+  const hasMoreEntries = entries.length > visibleEntries
+
   return (
     <div className="space-y-6">
-      {entries.map((entry) => {
+      {displayedEntries.map((entry) => {
         // Format the date
         const date = new Date(entry.created_at)
         const formattedDate = format(date, "MMMM d, yyyy 'at' h:mm a")
@@ -164,6 +175,19 @@ export default function JournalEntries() {
           </div>
         )
       })}
+
+      {hasMoreEntries && (
+        <div className="flex justify-center pt-2">
+          <Button
+            variant="outline"
+            onClick={loadMoreEntries}
+            className="flex items-center gap-2 border-zinc-200 text-zinc-600 hover:bg-zinc-50"
+          >
+            <ChevronDown className="h-4 w-4" />
+            Load more entries
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
