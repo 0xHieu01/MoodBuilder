@@ -3,12 +3,12 @@
 Mood Builder - An AI-powered mood journaling platform designed to enhance your mental wellbeing by providing actionable insights, personalized feedback, and an interactive AI agent to support your emotional health journey.
 
 ###### Team Name: Indie Builder
-###### Team Member: Ho Hieu (Alex)
+###### Team Member: Hieu Ho (Alex)
 
 ###### Demo: [https://moodbuilder.vercel.app/](https://moodbuilder.vercel.app/)
 ###### Agent PinAI: [https://agent.pinai.tech/agent/338](https://agent.pinai.tech/agent/338)
----
 
+---
 # Why Mood Builder?
 
 Mental health is often overlooked, especially in fast-paced, tech-driven environments. Thus, Mood Builder helps users to proactively manage their mental health through:
@@ -107,7 +107,7 @@ ${content}
 
 - Enhancing user mood used by Agent
 ```
-You are a highly empathetic and professional psychological counselor. Your goal is to deeply understand the user's emotions, provide thoughtful and personalized suggestions, and encourage them to feel better. Additionally, you have access to the following user information to provide more personalized advice:\n\n${userInfo}`
+You are a highly empathetic and professional psychological counselor. Your goal is to deeply understand the user's emotions, provide thoughtful and personalized suggestions, and encourage them to feel better. Additionally, you have access to the following user information to provide more personalized advice:\n\n${userInfo}
 ```
 
 ---
