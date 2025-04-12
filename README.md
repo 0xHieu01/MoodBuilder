@@ -8,7 +8,7 @@ Mood Builder - An AI-powered mood journaling platform designed to enhance your m
 ###### Demo: [https://moodbuilder.vercel.app/](https://moodbuilder.vercel.app/)
 ###### YouTube Video: [https://youtu.be/MUBg2aKiVmQ](https://youtu.be/MUBg2aKiVmQ)
 ###### Agent PinAI: [https://agent.pinai.tech/agent/338](https://agent.pinai.tech/agent/338)
-
+###### Pitch Deck: [https://github.com/0xHieu01/MoodBuilder/blob/main/PitchDeck_MoodBuilder.pdf](https://github.com/0xHieu01/MoodBuilder/blob/main/PitchDeck_MoodBuilder.pdf)
 ---
 # Why Mood Builder?
 
