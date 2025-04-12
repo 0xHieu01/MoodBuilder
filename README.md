@@ -6,6 +6,7 @@ Mood Builder - An AI-powered mood journaling platform designed to enhance your m
 ###### Team Member: Ho Hieu (Alex)
 
 ###### Demo: [https://moodbuilder.vercel.app/](https://moodbuilder.vercel.app/)
+###### Agent PinAI: [https://agent.pinai.tech/agent/338](https://agent.pinai.tech/agent/338)
 ---
 
 # Why Mood Builder?
