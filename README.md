@@ -9,6 +9,8 @@ Mood Builder - An AI-powered mood journaling platform designed to enhance your m
 ###### YouTube Video: [https://youtu.be/MUBg2aKiVmQ](https://youtu.be/MUBg2aKiVmQ)
 ###### Agent PinAI: [https://agent.pinai.tech/agent/338](https://agent.pinai.tech/agent/338)
 ###### Pitch Deck: [https://github.com/0xHieu01/MoodBuilder/blob/main/PitchDeck_MoodBuilder.pdf](https://github.com/0xHieu01/MoodBuilder/blob/main/PitchDeck_MoodBuilder.pdf)
+###### Prizes: First Prize in the Upstage AI Track & First Prize in the PIN AI Track
+
 ---
 # Why Mood Builder?
 
