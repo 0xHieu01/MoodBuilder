@@ -26,9 +26,11 @@ Mental health is often overlooked, especially in fast-paced, tech-driven environ
 
 - **PinAI**: To seamlessly modify and fetch user persona data in AI agent that puts the humans at the center of conversation.
 
-- **Next.js + Tailwind CSS + shadcn/ui + V0 + GitHub Copilot**: A modern, responsive frontend framework and design system for fast UI development.
+- **Next.js + Tailwind CSS + shadcn/ui**: A modern, responsive frontend framework and design system for fast UI development.
 
 - **Supabase**: For secure, real-time handling of journaling entries, mood data, and overall user information.
+
+- **Development Tools**: V0 + GitHub Copilot
 
 ---
 ## Deployments
